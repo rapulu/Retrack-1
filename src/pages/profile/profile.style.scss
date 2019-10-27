@@ -1,0 +1,48 @@
+* {
+    font-family: "Open Sans Condensed" !important;
+}
+.dashboard {
+    position: relative;
+}
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    width: 20vw;
+    border: solid 1px black;
+
+    ul {
+        padding: 0;
+        text-align: center;
+        margin-top: 0;
+
+
+        .link {
+            border-bottom: solid 1px black;
+            display: block;
+            padding-bottom: 20px;
+            padding-top: 20px;
+
+
+            &.active {
+                text-decoration: underline;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.main {
+    width: 60vw;
+    position: absolute;
+    right: 0;
+
+    .form-up {
+        margin: 0;
+        width: 100%;
+    }
+}
+th{
+    font-weight: bold !important;
+  }
