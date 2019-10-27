@@ -41,6 +41,6 @@ const HomePage = (props) => {
 
 const matchStateToProps = ({user}) => ({
     currentUser : user.currentUser
-  })
+})
 
   export default connect(matchStateToProps)(HomePage);

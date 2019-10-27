@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import FormInput, { TextArea } from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { connect } from 'react-redux'
-import {createReport} from "../../redux/report/report.action"
+import firebase from "../../firebase/firebase.utils"
+
 
 export class MakeReport extends Component{
     constructor(props) {
@@ -21,8 +22,17 @@ export class MakeReport extends Component{
 
      handleSubmit = e => {
          e.preventDefault();
-        debugger
+        
         const {email, lastName, firstName, report,age, phoneNumber} = this.state
+        console.log(this.props.currentUser)
+        debugger
+
+        const firestore = firebase.firestore();
+        firestore.collection('projects').add({
+        ...this.state,
+        reporter: this.props.currentUser.displayName,
+        createdAt: new Date()
+        }).catch(err => console.log(err))
         
         
         console.log(this.state, this.props)
@@ -111,10 +121,10 @@ export class MakeReport extends Component{
         )
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        createReport: (report) => dispatch(createReport(report))
-    }
-}
 
-export default connect(null, mapDispatchToProps)(MakeReport)
+const matchStateToProps = ({user}) => ({
+    currentUser : user.currentUser
+})
+
+
+export default connect(matchStateToProps)(MakeReport)
